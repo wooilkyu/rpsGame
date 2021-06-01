@@ -6,14 +6,13 @@
 //
 
 import Foundation
-
+// MARK: - STEP1
 var randomValue: Int = 0
 var isPlay = true
 
 func startGame() {
     repeat {
         randomValue = createRandomValue()
-        print(randomValue)
         print("가위(1), 바위(2), 보(3)! <종료: 0> :", terminator: " ")
         let userNum = inputUserValue()
         compare(userNum: userNum)
@@ -31,13 +30,15 @@ func createRandomValue() -> Int {
 }
 
 func inputUserValue() -> Int {
-    guard let userStr = readLine() else { return 0 }
-    let userValue = Int(userStr) ?? 0
+    guard let userStr = readLine() else { return 4 }
+    let userValue = Int(userStr) ?? 4
+    if userStr.count != 1 {
+        return 4
+    }
     return userValue
 }
 
 func compare(userNum: Int) {
-    print(randomValue)
     switch userNum {
     case 0:
         exitGame()
