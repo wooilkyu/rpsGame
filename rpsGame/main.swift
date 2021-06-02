@@ -3,7 +3,7 @@
 //  rpsGame
 //
 //  Created by 우일규 on 2021/06/01.
-//
+
 
 import Foundation
 // MARK: - STEP1
@@ -23,6 +23,23 @@ func exitGame() {
     print("게임 종료")
     isPlay = false
 }
+
+// ------------ 재귀함수 사용시 --------------
+//func startGame() {
+//    print("가위(1), 바위(2), 보(3)! <종료: 0> :", terminator: " ")
+//    let userNum = inputUserValue()
+//    compare(userNum: userNum)
+//    if isPlay == false {
+//        print("게임 종료")
+//        exitGame()
+//    } else {
+//        startGame()
+//    }
+//}
+//
+//func exitGame() {
+//    isPlay = false
+//}
 
 func createRandomValue() -> Int {
     let computedValue = Int.random(in: 1...3)
@@ -47,7 +64,7 @@ func compare(userNum: Int) {
             print("이겼습니다!")
         } else if randomValue == 2 {
             print("졌습니다!")
-        } else if randomValue == 1 {
+        } else {
             print("비겼습니다!")
         }
     case 2:
@@ -55,7 +72,7 @@ func compare(userNum: Int) {
             print("졌습니다!")
         } else if randomValue == 2 {
             print("비겼습니다!")
-        } else if randomValue == 1 {
+        } else {
             print("이겼습니다!")
         }
     case 3:
@@ -63,7 +80,7 @@ func compare(userNum: Int) {
             print("비겼습니다!")
         } else if randomValue == 2 {
             print("이겼습니다!")
-        } else if randomValue == 1 {
+        } else {
             print("졌습니다!")
         }
     default:
@@ -71,7 +88,7 @@ func compare(userNum: Int) {
     }
 }
 
-func printResult() {
+func battle() {
 
 }
 
