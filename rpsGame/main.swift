@@ -9,6 +9,7 @@ import Foundation
 // MARK: - STEP1
 var randomValue: Int = 0
 var isPlay = true
+var winner: String = ""
 
 func startGame() {
     repeat {
@@ -16,12 +17,16 @@ func startGame() {
         print("가위(1), 바위(2), 보(3)! <종료: 0> :", terminator: " ")
         let userNum = inputUserValue()
         compare(userNum: userNum)
+        if winner != "" {
+            secondGame()
+        }
     } while isPlay == true
+        print("게임 종료")
 }
 
 func exitGame() {
-    print("게임 종료")
     isPlay = false
+    winner = ""
 }
 
 func createRandomValue() -> Int {
@@ -45,39 +50,67 @@ func compare(userNum: Int) {
     case 1:
         if randomValue == 3 {
             print("이겼습니다!")
+            winner = "사용자"
         } else if randomValue == 2 {
             print("졌습니다!")
+            winner = "컴퓨터"
         } else {
             print("비겼습니다!")
         }
     case 2:
         if randomValue == 3 {
             print("졌습니다!")
+            winner = "컴퓨터"
         } else if randomValue == 2 {
             print("비겼습니다!")
         } else {
             print("이겼습니다!")
+            winner = "사용자"
         }
     case 3:
         if randomValue == 3 {
             print("비겼습니다!")
         } else if randomValue == 2 {
             print("이겼습니다!")
+            winner = "사용자"
         } else {
             print("졌습니다!")
+            winner = "컴퓨터"
         }
     default:
         print("잘못된 입력입니다. 다시 시도해주세요.")
     }
 }
 
-func battle() {
+func battle(userNum: Int) {
+    if randomValue == userNum {
+        if winner == "사용자" {
+            print("사용자의 승리!")
+            exitGame()
+        } else {
+            print("컴퓨터의 승리!")
+            exitGame()
+        }
+    } else {
+        if winner == "사용자" {
+            winner = "컴퓨터"
+        } else {
+            winner = "사용자"
+        }
+        
+    }
+}
 
+func secondGame() {
+    repeat {
+        print("[\(winner) 턴] 묵(1), 찌(2), 빠(3)! <종료 : 0> :", terminator: "")
+        randomValue = createRandomValue()
+        let userNum = inputUserValue()
+        battle(userNum: userNum)
+    } while winner == "사용자" || winner == "컴퓨터"
 }
 
 startGame()
-
-
 
 
 
