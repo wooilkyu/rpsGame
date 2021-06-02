@@ -24,23 +24,6 @@ func exitGame() {
     isPlay = false
 }
 
-// ------------ 재귀함수 사용시 --------------
-//func startGame() {
-//    print("가위(1), 바위(2), 보(3)! <종료: 0> :", terminator: " ")
-//    let userNum = inputUserValue()
-//    compare(userNum: userNum)
-//    if isPlay == false {
-//        print("게임 종료")
-//        exitGame()
-//    } else {
-//        startGame()
-//    }
-//}
-//
-//func exitGame() {
-//    isPlay = false
-//}
-
 func createRandomValue() -> Int {
     let computedValue = Int.random(in: 1...3)
     return computedValue
@@ -93,3 +76,24 @@ func battle() {
 }
 
 startGame()
+
+
+
+
+
+// ------------ 재귀함수 사용시 --------------
+//func startGame() {
+//    print("가위(1), 바위(2), 보(3)! <종료: 0> :", terminator: " ")
+//    let userNum = inputUserValue()
+//    compare(userNum: userNum)
+//    if isPlay == false {
+//        print("게임 종료")
+//        exitGame()
+//    } else {
+//        startGame()
+//    }
+//}
+//
+//func exitGame() {
+//    isPlay = false
+//}
