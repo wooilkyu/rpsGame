@@ -83,6 +83,7 @@ func compare(userNum: Int) {
 }
 
 func battle(userNum: Int) {
+    randomValue = createRandomValue()
     if randomValue == userNum {
         if winner == "사용자" {
             print("사용자의 승리!")
@@ -92,14 +93,17 @@ func battle(userNum: Int) {
             exitGame()
         }
     } else {
-        if winner == "사용자" || userNum == 4 {
-            winner = "컴퓨터"
-            print("\(winner)의 턴입니다.")
-        } else if winner == "컴퓨터" && userNum != 4 {
-            winner = "사용자"
-            print("\(winner)의 턴입니다.")
-        } else if winner == "컴퓨터" && userNum == 4 {
+        if userNum == 0 {
             exitGame()
+        } else if winner == "사용자" && userNum < 4 {
+            willTurn(userNum: userNum)
+            print("\(winner)의 턴입니다.")
+        } else if winner == "컴퓨터" && userNum < 4  {
+            willTurn(userNum: userNum)
+            print("\(winner)의 턴입니다.")
+        } else {
+            winner = "컴퓨터"
+            print("잘못된 입력입니다. 다시 시도해주세요.")
         }
     }
 }
@@ -107,15 +111,26 @@ func battle(userNum: Int) {
 func secondGame() {
     repeat {
         print("[\(winner) 턴] 묵(1), 찌(2), 빠(3)! <종료 : 0> :", terminator: " ")
-        randomValue = createRandomValue()
-        print(randomValue, terminator: " ")
         let userNum = inputUserValue()
         battle(userNum: userNum)
     } while winner == "사용자" || winner == "컴퓨터"
 }
 
-startGame()
+func willTurn(userNum: Int) {
+    let minusValue: Int = userNum - randomValue
+    if minusValue == 1 || minusValue == -2 {
+        winner = "사용자"
+    } else if minusValue == 2 || minusValue == -1 {
+        winner = "컴퓨터"
+    } else if userNum == 0 {
+        exitGame()
+    } else {
+        print("잘못된 입력입니다. 다시 시도해주세요.")
+    }
+}
 
+startGame()
+//-----------------------------------------------------------------------------------------------
 // ------------ 재귀함수 사용시 --------------
 //func startGame() {
 //    print("가위(1), 바위(2), 보(3)! <종료: 0> :", terminator: " ")
@@ -132,3 +147,17 @@ startGame()
 //func exitGame() {
 //    isPlay = false
 //}
+
+// -- enum --
+//func compareHand() {
+//    enum RockScissorsPaper: Int {
+//        case Rock = 1
+//        case Scissors = 2
+//        case Paper = 3
+//    }
+//    if RockScissorsPaper.Rock.rawValue > RockScissorsPaper.Scissors.rawValue {
+//        <#code#>
+//    }
+//}
+
+
